@@ -26,11 +26,3 @@ class User():
     def find_by_input(cls, user_input):
         return cls.all[int(user_input)-1]
 
-<<<<<<< HEAD
-
-=======
-    @staticmethod
-    def create(new_user):
-        all.append(new_user)
-        return all
->>>>>>> 0f585130efc189d3b9e8bdd009ab6e32a77e4c08
