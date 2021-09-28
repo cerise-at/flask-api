@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify
-from werkzeug import exceptions 
+from werkzeug import exceptions
 from flask_cors import CORS
-import user 
-
+from user import User
 
 app = Flask(__name__)
 CORS(app)
@@ -12,13 +11,13 @@ def hello_world():
     return 'hello world'
 
 @app.route('/users', methods = ['GET', 'POST'])
-def giriffle_handler():
+def user_handler():
     if request.method == 'GET':
-        return jsonify(user.User.all())
+        return jsonify(User.all())
     elif request.method == 'POST':
         data = request.json
-        user.User
-        return 'your information has been added', 201
+        User.create(data)
+        return 'user has been added', 201
   
 @app.route('/user/<int:user>')
 def indexed_user(user_id):

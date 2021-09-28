@@ -13,7 +13,7 @@ class User():
     @property
     def username(self):
         return self._username
-    
+
     @property
     def description(self):
         return self._age
@@ -21,7 +21,7 @@ class User():
     @property
     def height(self):
         return self._height
-    
+
     @classmethod
     def find_by_input(cls, user_input):
         return cls.all[int(user_input)-1]
