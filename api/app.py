@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
-from werkzeug import exceptions 
+from werkzeug import exceptions
 from flask_cors import CORS
-
+from user import User
 
 app = Flask(__name__)
 CORS(app)
@@ -11,20 +11,17 @@ def hello_world():
     return 'hello world'
 
 @app.route('/users', methods = ['GET', 'POST'])
-def giriffle_handler():
+def user_handler():
     if request.method == 'GET':
-        return jsonify(User.query.all())
+        return jsonify(User.all())
     elif request.method == 'POST':
         data = request.json
-        db.session.add(data['username'])
-        db.session.add(data['age'])
-        db.session.add(data['height'])
-        db.session.commit()
-        return 'your information has been added', 201
+        User.create(data)
+        return 'user has been added', 201
   
-@app.route('/giriffle/<int:giriffle_id>')
-def indexed_giriffle(giriffle_id):
-    return f"Thank you for purchasing your giriffle. Your personal giriffle has the id {giriffle_id}"
+@app.route('/user/<int:user>')
+def indexed_user(user_id):
+    return f"your username is  {user_id}"
 
 @app.errorhandler(exceptions.NotFound)
 def error_404(err):
