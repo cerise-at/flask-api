@@ -7,9 +7,9 @@ class TestAPICase():
         assert res.json['message'] == "Welcome to the movies API!"
 
     def test_get_movies(self, api):
-        res = api.get('/api/movies')
+        res = api.get('/movies')
         assert res.status == '200 OK'
-        assert len(res.json) == 1
+        assert len(res.json) == 5
 
     def test_get_movie_by_id(self, api):
         res = api.get('/api/movies/1')
@@ -22,10 +22,10 @@ class TestAPICase():
         assert "movie with id 10" in res.json['message']
 
     def test_post_movies(self, api):
-        mock_data = json.dumps({'movie_name': 'Tenet'})
+        mock_data = json.dumps({'movie_name': 'Stand by me'})
         mock_headers = {'Content-Type': 'application/json'}
         res = api.post('/api/movies', data=mock_data, headers=mock_headers)
-        assert res.json['id'] == 2
+        assert res.json['id'] == 5
 
     def test_not_found(self, api):
         res = api.get('/non')

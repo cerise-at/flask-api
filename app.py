@@ -24,12 +24,12 @@ def movie_handler():
 def indexed_user(user_id):
 
     if request.method == 'GET':
-        user = users.find_by_id(user_id)
-        return user
+        movies = movies.find_by_id(user_id)
+        return movies
 
     elif request.method == 'DELETE':
-        user = users.destroy(user_id)
-        return user
+        movies = movies.destroy(user_id)
+        return movies
         
 @app.errorhandler(exceptions.NotFound)
 def error_404(err):
