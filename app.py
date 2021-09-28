@@ -20,17 +20,17 @@ def movie_handler():
         movie = movies.create(request)
         return movie
 
-@app.route('/users/<int:user_id>', methods=['GET', 'DELETE'])
-def indexed_user(user_id):
+@app.route('/movies/<int:movie_id>', methods=['GET', 'DELETE'])
+def indexed_user(movie_id):
 
     if request.method == 'GET':
-        user = users.find_by_id(user_id)
-        return user
+        movie = movies.find_by_id(movie_id)
+        return movie
 
     elif request.method == 'DELETE':
-        user = users.destroy(user_id)
-        return user
-        
+        movie = movies.destroy(movie_id)
+        return movie
+
 @app.errorhandler(exceptions.NotFound)
 def error_404(err):
     return jsonify({"message": f"Not Found: {err}"}), 404
