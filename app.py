@@ -20,7 +20,7 @@ def movie_handler():
         movie = movies.create(request)
         return movie
 
-@app.route('/movies/<int:movie_id>', methods=['GET', 'DELETE'])
+@app.route('/movies/<int:movie_id>', methods=['GET', 'PUT', 'DELETE'])
 def indexed_user(movie_id):
 
     if request.method == 'GET':
@@ -29,6 +29,10 @@ def indexed_user(movie_id):
 
     elif request.method == 'DELETE':
         movie = movies.destroy(movie_id)
+        return movie
+
+    elif request.method == 'PUT':
+        movie = movies.update(movie_id, request)
         return movie
 
 @app.errorhandler(exceptions.NotFound)
