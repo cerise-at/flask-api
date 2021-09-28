@@ -1,28 +1,28 @@
 from flask import Flask, request, jsonify
 from werkzeug import exceptions
 from flask_cors import CORS
-from controllers import users
+from controllers import movies
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
 def hello_world():
-    return jsonify({"message": "welcome to the users API"}), 200
+    return jsonify({"message": "Welcome to the movies API!"}), 200
 
-@app.route('/users', methods = ['GET', 'POST'])
-def user_handler():
+@app.route('/movies', methods = ['GET', 'POST'])
+def movie_handler():
 
     if request.method == 'GET':
-        return jsonify(users.all()), 200
+        return jsonify(movies.all()), 200
 
     elif request.method == 'POST':
-        user = users.create(request)
-        return user
+        movie = movies.create(request)
+        return movie
 
-@app.route('/users/<int:user_id>')
-def indexed_user(user_id):
-    users.find_by_id(id)
+@app.route('/movies/<int:movie_id>')
+def indexed_movie(movie_id):
+    movies.find_by_id(id)
     return ''
 
 @app.errorhandler(exceptions.NotFound)
