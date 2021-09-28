@@ -7,9 +7,9 @@ name = "pypi"
 flask = "*"
 flask-cors = "*"
 werkzeug = "*"
+gunicorn = "*"
 
 [dev-packages]
-
 
 [scripts]
 start = "gunicorn app:app"

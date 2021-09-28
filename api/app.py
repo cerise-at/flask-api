@@ -13,15 +13,15 @@ def hello_world():
 @app.route('/users', methods = ['GET', 'POST'])
 def user_handler():
     if request.method == 'GET':
-        return jsonify(User.all())
+        return jsonify(User.all)
     elif request.method == 'POST':
         data = request.json
-        User.create(data)
+        User(data)
         return 'user has been added', 201
   
 @app.route('/user/<int:user>')
 def indexed_user(user_id):
-    return f"your username is  {user_id}"
+    return f"your username is {user_id}"
 
 @app.errorhandler(exceptions.NotFound)
 def error_404(err):

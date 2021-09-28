@@ -25,3 +25,5 @@ class User():
     @classmethod
     def find_by_input(cls, user_input):
         return cls.all[int(user_input)-1]
+
+
