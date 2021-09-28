@@ -20,17 +20,23 @@ def user_handler():
         user = users.create(request)
         return user
 
-@app.route('/users/<int:user_id>')
+@app.route('/users/<int:user_id>', methods=['GET', 'DELETE'])
 def indexed_user(user_id):
-    users.find_by_id(id)
-    return ''
 
+    if request.method == 'GET':
+        user = users.find_by_id(user_id)
+        return user
+
+    elif request.method == 'DELETE':
+        user = users.destroy(user_id)
+        return user
+        
 @app.errorhandler(exceptions.NotFound)
 def error_404(err):
     return jsonify({"message": f"Not Found: {err}"}), 404
 
 @app.errorhandler(exceptions.InternalServerError)
-def handle_500(err):
+def error_500(err):
     return jsonify({"message": "Internal Server Error"}), 500
 
 if __name__ == ('__main__'):

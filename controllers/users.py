@@ -12,6 +12,10 @@ def create(data):
     return user, 201
 
 def find_by_id(id):
-    user = [user for user in users if user['id'] == id]
-    # user = [users.filter(lambda users['id'] == id)]
-    print(user)
+    user = next(user for user in users if user['id'] == id)
+    return user
+
+def destroy(id):
+    movie = find_by_id(id)
+    users.remove(movie)
+    return movie, 204
