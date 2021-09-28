@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-cors = "*"
+werkzeug = "*"
+
+[dev-packages]
+
+
+[scripts]
+start = "gunicorn app:app"
+
+[requires]
+python_version = "3.9"
