@@ -10,13 +10,17 @@ CORS(app)
 def hello_world():
     return 'hello world'
 
-@app.route('/giriffle', methods = ['GET', 'POST'])
+@app.route('/users', methods = ['GET', 'POST'])
 def giriffle_handler():
     if request.method == 'GET':
-        return jsonify({'giriffle': ['pew pew pew pew', 'reloading']})
+        return jsonify(User.query.all())
     elif request.method == 'POST':
         data = request.json
-        return 'your giriffle has been dispatched to you', 201
+        db.session.add(data['username'])
+        db.session.add(data['age'])
+        db.session.add(data['height'])
+        db.session.commit()
+        return 'your information has been added', 201
   
 @app.route('/giriffle/<int:giriffle_id>')
 def indexed_giriffle(giriffle_id):
