@@ -10,7 +10,7 @@ CORS(app)
 def hello_world():
     return jsonify({"message": "Welcome to the movies API!"}), 200
 
-@app.route('/movies', methods = ['GET', 'POST'])
+@app.route('/movies/', methods = ['GET', 'POST'])
 def movie_handler():
 
     if request.method == 'GET':

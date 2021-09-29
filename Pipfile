@@ -9,8 +9,10 @@ flask-cors = "*"
 werkzeug = "*"
 gunicorn = "*"
 pytest = "*"
+pytest-cov = "*"
 
 [dev-packages]
+pytest-cov = "*"
 
 [scripts]
 start = "gunicorn app:app"
